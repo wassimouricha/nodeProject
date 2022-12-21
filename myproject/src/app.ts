@@ -156,7 +156,7 @@ app.delete("/films/:id", (req:Request, res: Response) => {
     const id = parseInt(req.params.id);
     const film = filmsMarvel.find((film) => film.id == id);
     if(!film){
-        res.status(404).send("le film n'a pas été trouvé")
+        res.status(404).send(`le film d'id ${id} n'a pas été trouvé`)
     }else {
         const index = filmsMarvel.indexOf(film);
         filmsMarvel.splice(index , 1);
