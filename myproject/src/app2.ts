@@ -112,7 +112,7 @@ app.put("/users/:id" , (req:Request, res: Response, next: NextFunction) => {
     const id = parseInt(req.params.id) ;
     const user = utilisateurs.find((user) => user.id == id);
         if(!user){
-            res.status(404).send("L'utilisateur n'a pas été trouvé")
+            res.status(404).send("Middleware: L'utilisateur n'a pas été trouvé")
             console.log("Middleware: l'utilisateur n'existe pas et n'à pas été modifié");
         }else{
             user.nom = req.body.nom;
