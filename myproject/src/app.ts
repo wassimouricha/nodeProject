@@ -3,20 +3,6 @@ import express, {Response, Request, NextFunction }  from "express";
 const app = express();
 app.use(express.json());
 const port = 8080;
-const cocktails = [
-    {
-        id: 1,
-        nom: "Margarita",
-    },
-    {
-        id: 2,
-        nom: "Mojito",
-    },
-    {
-        id: 3,
-        nom: "Cuba libre",
-    }
-]
 
 const filmsMarvel = [
     {
@@ -44,7 +30,7 @@ const filmsMarvel = [
     duree: 143,
     },
    ];
-   
+
    // middleware
 const monMiddleware = (req: Request, res: Response , next: NextFunction) =>{
     const date = Date.now();
@@ -69,12 +55,14 @@ app.get("/", (request: Request,response: Response, next: NextFunction) =>{
 }
 );
 
+// route pour tout les films
 app.get("/films", (req:Request, res: Response)=>{
     res.status(200).json(filmsMarvel);
 res.status(200).send("Bienvenue sur mon site");
 });
 
 
+// requete pour avoir un film en particuliers
 app.get("/films/:id", (req:Request, res: Response, next: NextFunction)=>{
     const id = parseInt(req.params.id);
     const film = filmsMarvel.find((film) => film.id === id);
@@ -120,6 +108,8 @@ const id = parseInt(req.params.id) ;
 // res.send(`Je suis l'id :  ${req.params.id} et mon nom est ${req.params.nom}`);
 // });
 
+
+// requete pour poster un film
 app.post("/films", (req:Request, res: Response) => {
     const film = {
         id: filmsMarvel.length +1,
@@ -134,6 +124,8 @@ app.post("/films", (req:Request, res: Response) => {
     res.send(film);
 });
 
+
+// requete pour modifier un film existant
 app.put("/films/:id" , (req:Request, res: Response) => {
     const id = parseInt(req.params.id);
     const film = filmsMarvel.find((film) => film.id == parseInt(req.params.id));
@@ -152,6 +144,9 @@ app.put("/films/:id" , (req:Request, res: Response) => {
     res.send(film);
 });
 
+
+
+// supprimer un film
 app.delete("/films/:id", (req:Request, res: Response) => {
     const id = parseInt(req.params.id);
     const film = filmsMarvel.find((film) => film.id == id);

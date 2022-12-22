@@ -9,4 +9,4 @@ Project
 ==> npm install typescript --save-dev
 ==> npm install -D ts-node-dev
 
-middleware == fonction lancer avant que la route soit executé
+middleware == fonction lancer avant que la route soit executé / executer du code au moment de l'execution d'une requete
