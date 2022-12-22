@@ -5,17 +5,6 @@ import { utilisateurs } from "../models/utilisateurs";
 
 const router = express.Router()
 
-   // middleware
-   const monMiddleware = (req: Request, res: Response , next: NextFunction) =>{
-    const date = Date.now();
-    const newDate = new Date(date);
-    // jj/MM/aaaa HH:mm:ss
-    console.log("je suis un middleware pour la date : " + newDate.toLocaleString());
-    
-    next();
-};
-
-router.use(monMiddleware);
 
 // const verifUser = (req: Request, res: Response , next: NextFunction) => {
 //     const id = parseInt(req.params.id);
