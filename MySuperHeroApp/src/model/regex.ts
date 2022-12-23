@@ -11,8 +11,8 @@ const resultName: boolean = regexName.test(nameR);
 
 console.log('Le nom est ' + (resultName ? 'correct' : 'incorrect'));
 
-const regexPower: RegExp = /^[a-zA-Z]*$/;
-const power: string = "spidersense";
+const regexPower: RegExp = /^[a-zA-Z- ]*$/;
+const power: string = "spider-sense";
 const resultPower: boolean = regexPower.test(power);
 
 console.log('Le pouvoir est ' + (resultPower ? 'correct' : 'incorrect'));

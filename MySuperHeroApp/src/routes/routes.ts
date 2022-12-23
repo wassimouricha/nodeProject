@@ -31,6 +31,13 @@ router.get("/heros/:id" , (req:Request, res: Response) => {
 
 // requete pour poster un hero
 router.post("/heros", (req:Request, res: Response) => {
+    const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const result: boolean = expression.test(req.body.email); // true
+    const regexName = new RegExp(/^[a-zA-Z0-9 ]*$/) ;
+    const resultName: boolean = regexName.test(req.body.nom);
+    const regexPower: RegExp = /^[a-zA-Z- ]*$/;
+    const resultPower: boolean = regexPower.test(req.body.pouvoir);
+
     const hero = {
         id: superHerosup.length +1,
         nom: req.body.nom,
@@ -38,8 +45,16 @@ router.post("/heros", (req:Request, res: Response) => {
         age: req.body.age,
         email: req.body.email,
     }
-    superHerosup.push(hero);
-    console.log(req.body);
+    if(result && resultName && resultPower){
+        superHerosup.push(hero);
+        console.log(req.body);
+    }else{
+        res.status(404).send("Les informations envoyé sont incorrect");
+    }
+  
+    console.log('l\'e-mail est ' + (result ? 'correct' : 'incorrect'));
+    console.log('Le nom est ' + (resultName ? 'correct' : 'incorrect'));
+    console.log('Le pouvoir est ' + (resultPower ? 'correct' : 'incorrect'));
     res.send(hero);
 });
 
